@@ -1,6 +1,7 @@
 import pytest
 
 def fix_phone_num(phone_num_to_fix):
+  
   # given "5125558823". Split the parts, then recombine and return
   area_code = phone_num_to_fix[0:3] # 512 (first three digits)
   three_part = phone_num_to_fix[3:6] # 555 (next three digits)
@@ -15,10 +16,19 @@ def test_fix_phone_num():
   assert fix_phone_num("5554429876") == "(555) 442 9876"
   assert fix_phone_num("3216543333") == "(321) 654 3333"
   
-def test_prob_input():
+def test_prob_num():
   with pytest.raises(ValueError):
     fix_phone_num("555-442-98761")
 
   with pytest.raises(ValueError):
     fix_phone_num("(3213) 654 3333")
+    
+def test_prob_alpha():
+  with pytest.raises(ValueError):
+    fix_phone_num("334dfdee45")
+
+  with pytest.raises(ValueError):
+    fix_phone_num("abcdefghij")
+
+
 
